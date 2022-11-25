@@ -12,7 +12,7 @@ const Navbar = () => {
                     <div className="flex items-center justify-between py-3 md:py-5 md:block">
                         <h2 className="text-2xl font-bold flex items-center gap-2">
                             <img src={logo} alt="" className='h-12' />
-                            Phone Kinun.com
+                            <span className=''>Phone</span> Kinun
                         </h2>
                         <div className="md:hidden">
                             <button
