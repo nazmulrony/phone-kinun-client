@@ -58,7 +58,7 @@ const Signup = () => {
     }
 
     return (
-        <div className='px-4'>
+        <div className='p-4'>
             <div className='mx-auto py-6 border max-w-md px-6 rounded-xl bg-light shadow-lg shadow-black/10'>
                 <h3 className='text-xl text-ruby font-semibold text-center'>Sign Up</h3>
                 <form onSubmit={handleSubmit(handleSignup)}>

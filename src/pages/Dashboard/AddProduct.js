@@ -23,7 +23,7 @@ const AddProduct = () => {
                 })
         }
     )
-    console.log(categories);
+    //handle add product function
     const handleAddProduct = data => {
         setLoading(true);
         const image = data.image[0];

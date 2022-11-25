@@ -24,7 +24,7 @@ const Login = () => {
 
     const handleLogin = data => {
         setLoginError('')
-        console.log(data);
+        console.log(data)
         loginUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
@@ -37,7 +37,7 @@ const Login = () => {
             })
     }
     return (
-        <div className='px-4'>
+        <div className='p-4'>
             <div className='mx-auto py-6 bg-light max-w-md px-6 rounded-xl shadow-lg shadow-black/10'>
                 <h3 className='text-xl text-ruby font-semibold text-center'>Login</h3>
                 <form onSubmit={handleSubmit(handleLogin)}>
@@ -75,7 +75,7 @@ const Login = () => {
                         type="submit"
                         className='btn btn-primary w-full' />
                 </form>
-                <p className='text-center text-sm my-3'>New to Dental Lab? <Link to="/signup" className=' text-ruby'>Create new account</Link></p>
+                <p className='text-center text-sm my-3'>New to Dental Lab? <Link to="/signup" className=' text-primary'>Create new account</Link></p>
                 <div className="divider">OR</div>
                 <button className='btn btn-outline btn-primary w-full'><FaGoogle className='text-xl mr-2' /> Continue with Google</button>
             </div>
