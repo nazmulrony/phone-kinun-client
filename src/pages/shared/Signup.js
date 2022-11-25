@@ -23,7 +23,7 @@ const Signup = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                toast('user created')
+                toast.success('user created')
                 const userInfo = {
                     displayName: data.name
                 }
@@ -41,8 +41,8 @@ const Signup = () => {
     }
 
     // saving registered users to database
-    const saveUserToDb = (name, email, role) => {
-        const user = { name, email, role };
+    const saveUserToDb = (name, email, role, isVerified = false) => {
+        const user = { name, email, role, isVerified };
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
