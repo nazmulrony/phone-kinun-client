@@ -6,6 +6,7 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import MyOrders from "../pages/Dashboard/MyOrders";
 import MyProducts from "../pages/Dashboard/MyProducts";
 import Home from "../pages/Home/Home";
+import ProductsOfCategory from "../pages/ProductsOfCategory/ProductsOfCategory";
 import Login from "../pages/shared/Login";
 import Signup from "../pages/shared/Signup";
 
@@ -25,6 +26,11 @@ export const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <Signup />
+            },
+            {
+                path: '/category/:id',
+                element: <ProductsOfCategory />,
+                loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
             },
             {
                 path: '/dashboard',
