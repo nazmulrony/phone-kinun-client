@@ -23,17 +23,40 @@ const MyProducts = () => {
 
 
     return (
-        <div className='lg:px-12 lg:py-6'>
+        <div className='px-4 lg:px-12 lg:py-6'>
             <h3 className='text-2xl text-primary text-center'>My Products</h3>
+            {!products.length && <h4 className='text-warning text-lg text-center'>You haven't added any product yet. </h4>}
             <div className='my-4'>
-                <table className='w-full'>
-                    <tr className='bg-primary text-light'>
-                        <th className='px-6 py-2'>SL</th>
-                        <th className='px-6 py-2'>Name</th>
-                        <th className='px-6 py-2'>Price</th>
-                        <th className='px-6 py-2'>Status</th>
-                        <th className='px-6 py-2'>Action</th>
-                    </tr>
+                <table className='w-full table-auto lg:table-auto'>
+                    <thead className='bg-primary text-light'>
+                        <tr >
+                            <th className='py-2'>S/N</th>
+                            <th className='py-2'>Name</th>
+                            <th className='py-2'>Price</th>
+                            <th className='py-2'>Status</th>
+                            <th className='py-2'>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody className=' divide-y divide-gray-300'>
+                        {
+                            products.map((product, i) =>
+                                <tr
+                                    className='text-center bg-slate-200 hover:bg-slate-300'
+                                    key={product._id}
+                                >
+                                    <td className='py-4'>{i + 1}</td>
+                                    <td className='py-4'>{product.name}</td>
+                                    <td className='py-4'>${product.sellingPrice}</td>
+                                    <td className={`py-4 ${product.isSold ? 'text-warning' : 'text-success'}`}>{product.isSold ? 'Sold' : 'Available'}</td>
+                                    <td className='py-2 flex justify-center flex-col items-center gap-1'>
+                                        <button className='btn btn-xs block w-20 btn-success'>Advertise</button>
+                                        <button className='btn btn-xs block w-20  btn-error'>Delete</button>
+                                    </td>
+                                </tr>)
+                        }
+                    </tbody>
+
+
                 </table>
             </div>
         </div>

@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
     const [navbar, setNavbar] = useState(false);
 
     return (
@@ -67,12 +69,21 @@ const Navbar = () => {
                             <li className="text-gray-600 hover:text-blue-600">
                                 <Link to="/dashboard">Dashboard</Link>
                             </li>
-                            <li className="text-gray-600 hover:text-blue-600">
-                                <Link to="/login">Login</Link>
-                            </li>
-                            <li className="text-gray-600 hover:text-blue-600">
-                                <Link to="/signup">Sign Up</Link>
-                            </li>
+                            {
+                                user ?
+                                    <li className="text-gray-600 hover:text-blue-600">
+                                        <button onClick={logOut}> Logout</button>
+                                    </li>
+                                    :
+                                    <>
+                                        <li className="text-gray-600 hover:text-blue-600">
+                                            <Link to="/login">Login</Link>
+                                        </li>
+                                        <li className="text-gray-600 hover:text-blue-600">
+                                            <Link to="/signup">Sign Up</Link>
+                                        </li>
+                                    </>
+                            }
                         </ul>
                     </div>
                 </div>

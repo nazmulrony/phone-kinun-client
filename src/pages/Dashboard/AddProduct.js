@@ -1,8 +1,11 @@
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import SmallSpinner from '../../components/SmallSpinner';
+import Spinner from '../../components/Spinner';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 
@@ -11,6 +14,16 @@ const AddProduct = () => {
     const navigate = useNavigate();
     const { register, formState: { errors }, handleSubmit } = useForm();
     const imageHostKey = process.env.REACT_APP_imageHostKey;
+    const { data: categories, isLoading } = useQuery(
+        {
+            queryKey: ['categories'],
+            queryFn: () => axios.get('http://localhost:5000/categories')
+                .then(data => {
+                    return data.data;
+                })
+        }
+    )
+    console.log(categories);
     const handleAddProduct = data => {
         setLoading(true);
         const image = data.image[0];
@@ -55,10 +68,14 @@ const AddProduct = () => {
                     })
             })
     }
+    if (isLoading) {
+        return <Spinner />
+    }
     return (
         <div className='p-4 lg:p-12'>
             <div className='  border w-full p-6 rounded-xl bg-light shadow-lg shadow-black/10'>
                 <h3 className='text-xl text-ruby font-semibold text-center'>Add a Product</h3>
+
                 <form onSubmit={handleSubmit(handleAddProduct)}>
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                         <div className="form-control w-full ">
@@ -79,10 +96,9 @@ const AddProduct = () => {
                                 {...register("category", {
                                     required: 'Category is required'
                                 })}>
-                                <option value="samsung">Samsung</option>
-                                <option value="apple">Apple</option>
-                                <option value="oneplus">OnePlus</option>
-                                <option value="xiaomi">Xiaomi</option>
+                                {
+                                    categories?.map(category => <option key={category._id} value={category.name}>{category.name}</option>)
+                                }
                             </select>
                             {errors.category && <p className='mt-1 text-sm text-red-600'>{errors.category?.message}</p>}
                         </div>

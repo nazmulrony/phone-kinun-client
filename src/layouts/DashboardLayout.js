@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { MdOutlineDashboard, MdOutlineSpaceDashboard } from 'react-icons/md'
+import { MdOutlineSpaceDashboard } from 'react-icons/md'
+import { AuthContext } from '../contexts/AuthProvider';
+import useAdmin from '../hooks/useAdmin';
+import useSeller from '../hooks/useSeller';
+import useBuyer from '../hooks/useBuyer';
+
 
 const DashboardLayout = () => {
+    const { user } = useContext(AuthContext);
+    const [isAdmin] = useAdmin(user?.email);
+    const [isSeller] = useSeller(user?.email);
+    const [isBuyer] = useBuyer(user?.email);
+    console.log(isAdmin, isSeller, isBuyer);
     return (
         <div className="drawer drawer-mobile">
             <input id="dashboardDrawer" type="checkbox" className="drawer-toggle" />
@@ -14,13 +24,27 @@ const DashboardLayout = () => {
                 <Outlet />
 
             </div>
-            <div className="drawer-side">
+            {/* side bar code */}
+            <div className='bg-primary '>
                 <label htmlFor="dashboardDrawer" className="drawer-overlay"></label>
-                <ul className="menu p-4 w-80 bg-base-100 text-base-content">
+                <ul className="menu p-4 w-80 bg-primary text-light font-bold gap-1">
                     {/* <!-- Sidebar content here --> */}
-                    <li><Link to="/dashboard/my-orders">My Orders</Link></li>
-                    <li><Link to="/dashboard/add-product">Add a Product</Link></li>
-                    <li><Link to="/dashboard/my-products">My Products</Link></li>
+                    {
+                        isBuyer && <li><Link to="/dashboard/my-orders">My Orders</Link></li>
+                    }
+                    {
+                        isSeller && <>
+                            <li><Link to="/dashboard/my-products">My Products</Link></li>
+                            <li><Link to="/dashboard/add-product">Add a Product</Link></li>
+                        </>
+                    }
+                    {
+                        isAdmin && <>
+                            <li><Link to="/dashboard">All Users</Link></li>
+                            <li><Link to="/dashboard">All Sellers</Link></li>
+                        </>
+                    }
+
                 </ul>
 
             </div>
