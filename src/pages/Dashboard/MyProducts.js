@@ -25,7 +25,7 @@ const MyProducts = () => {
     return (
         <div className='px-4 lg:px-12 lg:py-6'>
             <h3 className='text-2xl text-primary text-center'>My Products</h3>
-            {!products.length && <h4 className='text-warning text-lg text-center'>You haven't added any product yet. </h4>}
+            {!products.length && <h4 className='text-warning text-2xl text-center'>You haven't added any product yet. </h4>}
             <div className='my-4'>
                 <table className='w-full table-auto lg:table-auto'>
                     <thead className='bg-primary text-light'>

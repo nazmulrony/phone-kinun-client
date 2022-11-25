@@ -74,7 +74,7 @@ const AddProduct = () => {
     return (
         <div className='p-4 lg:p-12'>
             <div className='  border w-full p-6 rounded-xl bg-light shadow-lg shadow-black/10'>
-                <h3 className='text-xl text-ruby font-semibold text-center'>Add a Product</h3>
+                <h3 className='text-2xl text-primary font-semibold text-center'>Add a Product</h3>
 
                 <form onSubmit={handleSubmit(handleAddProduct)}>
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
