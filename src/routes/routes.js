@@ -5,6 +5,7 @@ import AddProduct from "../pages/Dashboard/AddProduct";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import MyOrders from "../pages/Dashboard/MyOrders";
 import MyProducts from "../pages/Dashboard/MyProducts";
+import MyWishlist from "../pages/Dashboard/MyWishlist";
 import Home from "../pages/Home/Home";
 import ProductsOfCategory from "../pages/ProductsOfCategory/ProductsOfCategory";
 import Login from "../pages/shared/Login";
@@ -43,6 +44,10 @@ export const router = createBrowserRouter([
                     {
                         path: '/dashboard/my-orders',
                         element: <MyOrders />,
+                    },
+                    {
+                        path: '/dashboard/my-wishlist',
+                        element: <MyWishlist />,
                     },
                     {
                         path: '/dashboard/add-product',

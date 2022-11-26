@@ -1,11 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import Spinner from '../../components/Spinner';
 import { AuthContext } from '../../contexts/AuthProvider';
+import ConfirmationModal from '../shared/ConfirmationModal';
 
 const MyProducts = () => {
     const { user } = useContext(AuthContext);
+    const [deletingProduct, setDeletingProduct] = useState(null)
     const url = `http://localhost:5000/products?email=${user?.email}`
     const { data: products, isLoading } = useQuery({
         queryKey: ['products', user?.email],
@@ -16,6 +18,10 @@ const MyProducts = () => {
             })
 
     })
+    const handleDeleteProduct = () => {
+        fetch
+
+    }
 
     if (isLoading) {
         return <Spinner />
@@ -27,14 +33,14 @@ const MyProducts = () => {
             <h3 className='text-2xl text-primary text-center'>My Products</h3>
             {!products.length && <h4 className='text-warning text-2xl text-center'>You haven't added any product yet. </h4>}
             <div className='my-4'>
-                <table className='w-full table-auto lg:table-auto'>
+                <table className='w-full table-auto lg:table-auto shadow-lg shadow-black/10'>
                     <thead className='bg-primary text-light'>
                         <tr >
-                            <th className='py-2'>S/N</th>
-                            <th className='py-2'>Name</th>
-                            <th className='py-2'>Price</th>
-                            <th className='py-2'>Status</th>
-                            <th className='py-2'>Action</th>
+                            <th className='px-4 py-2'>S/N</th>
+                            <th className='px-4 py-2'>Name</th>
+                            <th className='px-4 py-2'>Price</th>
+                            <th className='px-4 py-2'>Status</th>
+                            <th className='px-4 py-2'>Action</th>
                         </tr>
                     </thead>
                     <tbody className=' divide-y divide-gray-300'>
@@ -44,13 +50,13 @@ const MyProducts = () => {
                                     className='text-center bg-slate-200 hover:bg-slate-300'
                                     key={product._id}
                                 >
-                                    <td className='py-4'>{i + 1}</td>
-                                    <td className='py-4'>{product.name}</td>
-                                    <td className='py-4'>${product.sellingPrice}</td>
-                                    <td className={`py-4 ${product.isSold ? 'text-warning' : 'text-success'}`}>{product.isSold ? 'Sold' : 'Available'}</td>
-                                    <td className='py-2 flex justify-center flex-col items-center gap-1'>
-                                        <button className='btn btn-xs block w-20 btn-success'>Advertise</button>
-                                        <button className='btn btn-xs block w-20  btn-error'>Delete</button>
+                                    <td className='py-4 px-4'>{i + 1}</td>
+                                    <td className='py-4 px-4'>{product.name}</td>
+                                    <td className='py-4 px-4'>${product.sellingPrice}</td>
+                                    <td className={`py-4 px-4 ${product.isSold ? 'text-warning' : 'text-success'}`}>{product.isSold ? 'Sold' : 'Available'}</td>
+                                    <td className='py-2 px-4 flex justify-center flex-col items-center gap-1'>
+                                        <button className='btn btn-xs  w-20 btn-success'>Advertise</button>
+                                        <label onClick={() => setDeletingProduct(product)} htmlFor="confirmation-modal" className="btn btn-xs w-20 btn-error ">Delete</label>
                                     </td>
                                 </tr>)
                         }
@@ -59,6 +65,15 @@ const MyProducts = () => {
 
                 </table>
             </div>
+            {
+                deletingProduct && <ConfirmationModal
+                    title={'Are you sure you want to delete?'}
+                    message={`If you delete ${deletingProduct.name}, You can not recover it!`}
+                    modalData={deletingProduct}
+                    successAction={handleDeleteProduct}
+                    successBtnName={'Confirm'}
+                />
+            }
         </div>
     );
 };

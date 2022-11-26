@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
+import Spinner from '../../components/Spinner';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const BookingModal = ({ selectedProduct, closeModal }) => {
@@ -38,6 +39,9 @@ const BookingModal = ({ selectedProduct, closeModal }) => {
 
             })
         console.log(order);
+    }
+    if (loading) {
+        return <Spinner />
     }
     return (
         <div>

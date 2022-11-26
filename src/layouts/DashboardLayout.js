@@ -30,7 +30,10 @@ const DashboardLayout = () => {
                 <ul className="menu p-4 w-80 bg-primary text-light font-bold gap-1">
                     {/* <!-- Sidebar content here --> */}
                     {
-                        isBuyer && <li><Link to="/dashboard/my-orders">My Orders</Link></li>
+                        isBuyer && <>
+                            <li><Link to="/dashboard/my-orders">My Orders</Link></li>
+                            <li><Link to="/dashboard/my-wishlist">My Wishlist</Link></li>
+                        </>
                     }
                     {
                         isSeller && <>

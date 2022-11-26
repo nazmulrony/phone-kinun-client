@@ -1,29 +1,28 @@
-
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useContext } from 'react';
 import Spinner from '../../components/Spinner';
 import { AuthContext } from '../../contexts/AuthProvider';
-import OrderRow from './OrderRow';
+import WishlistRow from './WishlistRow';
 
-const MyOrders = () => {
+const MyWishlist = () => {
     const { user } = useContext(AuthContext)
-    const { data: orders, isLoading } = useQuery({
-        queryKey: ['oders', user?.email],
-        queryFn: () => axios(`http://localhost:5000/orders/${user?.email}`)
+    const { data: wishlist, isLoading } = useQuery({
+        queryKey: ['wishlist', user?.email],
+        queryFn: () => axios(`http://localhost:5000/wishlist/${user?.email}`)
             .then(data => {
                 return data.data
             })
     })
-    // console.log(orders);
+    // console.log(wishlist);
     if (isLoading) {
         return <Spinner />
     }
 
     return (
         <div className='px-4 lg:px-12 lg:py-6'>
-            <h3 className='text-2xl text-primary text-center'>My Orders</h3>
-            {!orders.length && <h4 className='text-warning text-2xl text-center'>You haven't ordered any product yet. </h4>}
+            <h3 className='text-2xl text-primary text-center'>My Wishlist</h3>
+            {!wishlist.length && <h4 className='text-warning text-2xl text-center'>You haven't added any product to wishlist. </h4>}
             <div className='my-4 overflow-x-auto'>
                 <table className='w-full shadow-lg shadow-black/10'>
                     <thead className='bg-primary text-light'>
@@ -38,9 +37,9 @@ const MyOrders = () => {
                     </thead>
                     <tbody className=' divide-y divide-gray-300'>
                         {
-                            orders.map((order, i) => <OrderRow
-                                key={order._id}
-                                productId={order.productId}
+                            wishlist.map((list, i) => <WishlistRow
+                                key={list._id}
+                                productId={list.productId}
                                 i={i}
                             />)
                         }
@@ -53,4 +52,4 @@ const MyOrders = () => {
     );
 };
 
-export default MyOrders;
+export default MyWishlist;

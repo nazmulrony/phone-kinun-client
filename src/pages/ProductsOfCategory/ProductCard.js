@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaPhoneAlt, FaSearchLocation } from 'react-icons/fa';
 import { GoVerified } from 'react-icons/go';
 import { MdLocationOn } from 'react-icons/md';
@@ -6,9 +6,14 @@ import { BsFillCalendarCheckFill } from 'react-icons/bs';
 import { useQuery } from '@tanstack/react-query';
 import SmallSpinner from '../../components/SmallSpinner';
 import axios from 'axios';
+import { AuthContext } from '../../contexts/AuthProvider';
+import toast from 'react-hot-toast';
 
 const ProductCard = ({ product, setSelectedProduct }) => {
-    const { name,
+    const { user, } = useContext(AuthContext)
+    const {
+        _id,
+        name,
         image,
         category,
         condition,
@@ -28,7 +33,29 @@ const ProductCard = ({ product, setSelectedProduct }) => {
                 return data.data;
             })
     })
-    // console.log(seller);
+    const handleAddToWishlist = () => {
+        const wishlist = {
+            userEmail: user?.email,
+            productId: _id
+        }
+        console.log(wishlist);
+        fetch('http://localhost:5000/wishlist/add', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(wishlist)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    toast.success(' successfully added to wishlist')
+                } else {
+                    toast.error('You have already added this to wishlist');
+                }
+            })
+    }
     if (isLoading) {
         return <SmallSpinner />
     }
@@ -64,7 +91,7 @@ const ProductCard = ({ product, setSelectedProduct }) => {
                 <div className='flex items-end justify-between h-full my-2'>
 
                     <label onClick={() => setSelectedProduct(product)} className='btn btn-primary rounded-none btn-sm' htmlFor="bookingModal">Order Now</label>
-                    <button className='btn rounded-none btn-sm'>Add to Wishlist</button>
+                    <button onClick={handleAddToWishlist} className='btn rounded-none btn-sm'>Add to Wishlist</button>
                 </div>
             </div>
         </div>
