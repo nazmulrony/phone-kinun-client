@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 import Spinner from '../../components/Spinner';
 import { AuthContext } from '../../contexts/AuthProvider';
 import ConfirmationModal from '../shared/ConfirmationModal';
@@ -9,17 +10,26 @@ const MyProducts = () => {
     const { user } = useContext(AuthContext);
     const [deletingProduct, setDeletingProduct] = useState(null)
     const url = `http://localhost:5000/products?email=${user?.email}`
-    const { data: products, isLoading } = useQuery({
+    const { data: products, isLoading, refetch } = useQuery({
         queryKey: ['products', user?.email],
         queryFn: () => axios.get(url)
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 return data.data;
             })
 
     })
-    const handleDeleteProduct = () => {
-        fetch
+    const handleDeleteProduct = (product) => {
+        fetch(`http://localhost:5000/products/delete/${product._id}`, {
+            method: 'DELETE',
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    toast.success('Product successfully deleted')
+                    refetch()
+                }
+            })
 
     }
 
