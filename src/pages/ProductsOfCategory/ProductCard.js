@@ -7,7 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 import SmallSpinner from '../../components/SmallSpinner';
 import axios from 'axios';
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, setSelectedProduct }) => {
     const { name,
         image,
         category,
@@ -28,7 +28,7 @@ const ProductCard = ({ product }) => {
                 return data.data;
             })
     })
-    console.log(seller);
+    // console.log(seller);
     if (isLoading) {
         return <SmallSpinner />
     }
@@ -62,7 +62,8 @@ const ProductCard = ({ product }) => {
                     <p><span className='font-semibold'>Description: </span>{description}</p>
                 </div>
                 <div className='flex items-end justify-between h-full my-2'>
-                    <button className='btn btn-primary rounded-none btn-sm'>Order Now</button>
+
+                    <label onClick={() => setSelectedProduct(product)} className='btn btn-primary rounded-none btn-sm' htmlFor="bookingModal">Order Now</label>
                     <button className='btn rounded-none btn-sm'>Add to Wishlist</button>
                 </div>
             </div>
