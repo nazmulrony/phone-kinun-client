@@ -13,7 +13,7 @@ const Categories = () => {
                 return data.data;
             })
     })
-    console.log(categories);
+    // console.log(categories);
     if (isLoading) {
         return <Spinner />
     }

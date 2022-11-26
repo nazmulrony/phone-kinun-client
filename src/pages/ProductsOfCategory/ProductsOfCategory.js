@@ -25,7 +25,7 @@ const ProductsOfCategory = () => {
     if (isLoading) {
         return <Spinner />
     }
-    console.log(selectedProduct);
+    // console.log(selectedProduct);
     return (
         <div className='my-6 lg:px-20'>
             <h2 className='text-2xl text-primary my-6 text-center hover:text-teal-600 duration-500'>Find the best product from {products.length && products[0].category}</h2>
