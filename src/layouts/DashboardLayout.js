@@ -15,18 +15,17 @@ const DashboardLayout = () => {
     console.log(isAdmin, isSeller, isBuyer);
     return (
         <div className="drawer drawer-mobile">
-            <input id="dashboardDrawer" type="checkbox" className="drawer-toggle" />
+            <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content">
                 {/* <!-- Page content here --> */}
-                <div className='flex justify-end mr-4 mt-2'>
-                    <label htmlFor="dashboardDrawer" className="btn btn-primary drawer-button lg:hidden"><MdOutlineSpaceDashboard className='text-2xl' /></label>
+                <div className='flex justify-end m-4'>
+                    <label htmlFor="dashboard-drawer" className="btn btn-primary drawer-button lg:hidden"> <MdOutlineSpaceDashboard className='text-2xl' /> </label>
                 </div>
                 <Outlet />
 
             </div>
-            {/* side bar code */}
-            <div className='bg-primary '>
-                <label htmlFor="dashboardDrawer" className="drawer-overlay"></label>
+            <div className="drawer-side">
+                <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80 bg-primary text-light font-bold gap-1">
                     {/* <!-- Sidebar content here --> */}
                     {

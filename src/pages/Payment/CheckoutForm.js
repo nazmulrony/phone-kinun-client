@@ -88,7 +88,7 @@ const CheckoutForm = ({ product }) => {
                 .then(data => {
                     console.log(data);
                     if (data.acknowledged) {
-                        setSuccess('Your payment successfully completed');
+                        setSuccess('Your payment successfully completed!');
                         setTransactionId(paymentIntent.id);
                     }
                 })
@@ -101,6 +101,7 @@ const CheckoutForm = ({ product }) => {
         <>
             <form onSubmit={handleSubmit}>
                 <CardElement
+                    className='bg-light px-2 py-3 shadow-md rounded-md shadow-black/10'
                     options={{
                         style: {
                             base: {
@@ -134,10 +135,10 @@ const CheckoutForm = ({ product }) => {
                 <p className='text-red-600'>{cardError}</p>
             }
             {
-                <p>{success}</p>
+                <p className='text-success'>{success}</p>
             }
             {
-                <p>Your transaction ID:{transactionId}</p>
+                <p>Your transaction ID: <br /><span className='text-primary text-sm'>{transactionId}</span></p>
             }
         </>
     );

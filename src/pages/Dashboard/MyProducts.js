@@ -42,8 +42,8 @@ const MyProducts = () => {
         <div className='px-4 lg:px-12 lg:py-6'>
             <h3 className='text-2xl text-primary text-center'>My Products</h3>
             {!products.length && <h4 className='text-warning text-2xl text-center'>You haven't added any product yet. </h4>}
-            <div className='my-4'>
-                <table className='w-full table-auto lg:table-auto shadow-lg shadow-black/10'>
+            <div className='my-4 overflow-x-auto'>
+                <table className='w-full shadow-lg shadow-black/10'>
                     <thead className='bg-primary text-light'>
                         <tr >
                             <th className='px-4 py-2'>S/N</th>

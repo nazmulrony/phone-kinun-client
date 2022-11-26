@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const WishlistRow = ({ productId, i }) => {
     const { data: product = [] } = useQuery({
@@ -28,7 +29,7 @@ const WishlistRow = ({ productId, i }) => {
                     <td className='py-4 px-4'>${product.sellingPrice}</td>
                     <td className={`py-4 px-4`}>{product.category}</td>
                     <td className='py-2 px-4'>
-                        <button className='btn btn-sm block  btn-primary my-auto mx-auto'>Proceed to Purchase</button>
+                        <Link to={`/dashboard/payment/${product._id}`}><button className='btn btn-sm block  btn-primary my-auto mx-auto'>Proceed to Purchase</button></Link>
                     </td>
                 </tr>
             }</>
