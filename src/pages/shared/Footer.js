@@ -10,16 +10,16 @@ const Footer = () => {
                 <p>Phone Kinun Co. Ltd.<br />Providing reliable service since 2021</p>
             </div>
             <div className='flex gap-2 lg:gap-6 items-center justify-center flex-1'>
-                <div className='bg-zinc-800 h-10 w-10 rounded-full grid place-items-center hover:scale-105 duration-00'>
+                <div className='bg-zinc-800 h-10 w-10 rounded-full grid place-items-center hover:scale-105 duration-300'>
                     <FaFacebook className='text-primary text-2xl' />
                 </div>
-                <div className='bg-zinc-800 h-10 w-10 rounded-full grid place-items-center hover:scale-105 duration-00'>
+                <div className='bg-zinc-800 h-10 w-10 rounded-full grid place-items-center hover:scale-105 duration-300'>
                     <FaLinkedin className='text-primary text-2xl' />
                 </div>
-                <div className='bg-zinc-800 h-10 w-10 rounded-full grid place-items-center hover:scale-105 duration-00'>
+                <div className='bg-zinc-800 h-10 w-10 rounded-full grid place-items-center hover:scale-105 duration-300'>
                     <FaGithub className='text-primary text-2xl' />
                 </div>
-                <div className='bg-zinc-800 h-10 w-10 rounded-full grid place-items-center hover:scale-105 duration-00'>
+                <div className='bg-zinc-800 h-10 w-10 rounded-full grid place-items-center hover:scale-105 duration-300'>
                     <FaInstagram className='text-primary text-2xl' />
                 </div>
             </div>

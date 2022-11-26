@@ -5,9 +5,9 @@ import Navbar from '../pages/shared/Navbar';
 
 const Main = () => {
     return (
-        <div className='min-h-screen flex-1 font-lato bg-brand max-w-screen-2xl relative'>
+        <div className='min-h-screen  font-lato bg-brand max-w-screen-2xl relative'>
             <Navbar></Navbar>
-            <div>
+            <div className='min-h-screen'>
                 <Outlet></Outlet>
             </div>
             <Footer />

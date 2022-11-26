@@ -7,6 +7,7 @@ import MyOrders from "../pages/Dashboard/MyOrders";
 import MyProducts from "../pages/Dashboard/MyProducts";
 import MyWishlist from "../pages/Dashboard/MyWishlist";
 import Home from "../pages/Home/Home";
+import Payment from "../pages/Payment/Payment";
 import ProductsOfCategory from "../pages/ProductsOfCategory/ProductsOfCategory";
 import Login from "../pages/shared/Login";
 import Signup from "../pages/shared/Signup";
@@ -31,7 +32,10 @@ export const router = createBrowserRouter([
             {
                 path: '/category/:id',
                 element: <ProductsOfCategory />,
-
+            },
+            {
+                path: '/payment/:id',
+                element: <Payment />,
             },
             {
                 path: '/dashboard',

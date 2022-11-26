@@ -62,7 +62,7 @@ const ProductCard = ({ product, setSelectedProduct }) => {
     return (
         <div className='bg-light max-w-md mx-auto p-6 shadow-lg shadow-black/10'>
             <div className=''>
-                <img src={image} alt="" className='' />
+                <img src={image} alt="" className='w-1/2 mx-auto' />
             </div>
             <div className='px-2 flex flex-col  h-96'>
                 <div className='flex flex-col gap-2'>

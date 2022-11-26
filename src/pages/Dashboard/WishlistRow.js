@@ -10,24 +10,28 @@ const WishlistRow = ({ productId, i }) => {
                 return data.data;
             })
     })
+    console.log(product);
     return (
-        <tr
-            className='text-center bg-slate-200 hover:bg-slate-300'
-            key={product._id}
-        >
-            <td className='py-4 px-4'>{i + 1}</td>
-            <td className='py-2 px-4 grid place-items-center'>
-                <div className="w-24 mask mask-squircle">
-                    <img src={product.image} alt="doctor-img" />
-                </div>
-            </td>
-            <td className='py-4 px-4'>{product.name}</td>
-            <td className='py-4 px-4'>${product.sellingPrice}</td>
-            <td className={`py-4 px-4`}>{product.category}</td>
-            <td className='py-2 px-4'>
-                <button className='btn btn-sm block w-20 btn-primary my-auto mx-auto'>Pay</button>
-            </td>
-        </tr>
+        <>
+            {
+                product && <tr
+                    className='text-center bg-slate-200 hover:bg-slate-300'
+                    key={product._id}
+                >
+                    <td className='py-4 px-4'>{i + 1}</td>
+                    <td className='py-2 px-4 grid place-items-center'>
+                        <div className="w-24 mask mask-squircle">
+                            <img src={product.image} alt="doctor-img" />
+                        </div>
+                    </td>
+                    <td className='py-4 px-4'>{product.name}</td>
+                    <td className='py-4 px-4'>${product.sellingPrice}</td>
+                    <td className={`py-4 px-4`}>{product.category}</td>
+                    <td className='py-2 px-4'>
+                        <button className='btn btn-sm block  btn-primary my-auto mx-auto'>Proceed to Purchase</button>
+                    </td>
+                </tr>
+            }</>
     );
 };
 
