@@ -14,7 +14,7 @@ const WishlistRow = ({ productId, i }) => {
     return (
         <>
             {
-                product && <tr
+                product && !product.isSold && <tr
                     className='text-center bg-slate-200 hover:bg-slate-300'
                     key={product._id}
                 >

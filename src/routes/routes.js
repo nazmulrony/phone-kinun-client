@@ -33,10 +33,7 @@ export const router = createBrowserRouter([
                 path: '/category/:id',
                 element: <ProductsOfCategory />,
             },
-            {
-                path: '/payment/:id',
-                element: <Payment />,
-            },
+
             {
                 path: '/dashboard',
                 element: <DashboardLayout />,
@@ -60,6 +57,11 @@ export const router = createBrowserRouter([
                     {
                         path: '/dashboard/my-products',
                         element: <MyProducts />,
+                    },
+                    {
+                        path: '/dashboard/payment/:id',
+                        element: <Payment />,
+                        loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
                     },
                 ]
             },

@@ -31,8 +31,8 @@ const OrderRow = ({ productId, i, }) => {
                     <td className='py-4 px-4'>${product.sellingPrice}</td>
                     <td className={`py-4 px-4`}>{product.category}</td>
                     <td className='py-2 px-4'>
-                        <Link to={`/payment/${product._id}`}>
-                            <button className='btn btn-sm block w-20 btn-primary my-auto mx-auto'>Pay</button>
+                        <Link to={`/dashboard/payment/${product._id}`}>
+                            <button disabled={product.isSold} className='btn btn-sm block w-20 btn-primary my-auto mx-auto'>Pay</button>
                         </Link>
                     </td>
                 </tr>
