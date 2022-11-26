@@ -13,7 +13,7 @@ const ProductsOfCategory = () => {
         queryKey: ['products', categoryId],
         queryFn: () => axios.get(url)
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 return data.data;
             })
     })
@@ -23,7 +23,7 @@ const ProductsOfCategory = () => {
     return (
         <div className='my-6 lg:px-20'>
             <h2 className='text-2xl text-primary my-6 text-center hover:text-teal-600 duration-500'>Find the best product from {products.length && products[0].category}</h2>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
                 {
                     products.map(product => <ProductCard
                         key={product._id}
