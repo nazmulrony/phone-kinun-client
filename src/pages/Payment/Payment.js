@@ -24,10 +24,10 @@ const Payment = () => {
     // console.log(product);
 
     return (
-        <div className='p-4 lg:p-10 '>
-            <div className='text-center mb-6'>
-                <h3 className='text-xl'>Complete your payment to confirm the order of <span className='text-primary'>{product.name}</span> </h3>
-                <p>Payment Amount</p>
+        <div className='p-4 lg:p-10  bg-slate-200 max-w-2xl mx-auto shadow-lg shadow-black/10'>
+            <div className='mb-6'>
+                <h3 className='text-xl my-2'>Complete your payment to confirm the order of <span className='text-primary'>{product.name}</span> </h3>
+                <p>Payment Amount: <span className='text-primary'>${product.sellingPrice}</span></p>
             </div>
             <div className=' bg bg-primary/10 max-w-sm mx-auto p-8 h-56 shadow-lg shadow-black/10'>
                 <Elements stripe={stripePromise}>

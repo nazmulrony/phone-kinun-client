@@ -30,7 +30,26 @@ const MyProducts = () => {
                     refetch()
                 }
             })
-
+    }
+    const handleAdvertise = (product) => {
+        const advertiseItem = {
+            productId: product._id
+        }
+        fetch('http://localhost:5000/advertise', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(advertiseItem)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success('Product added to advertized product')
+                } else {
+                    toast.error('Already in advertised product list')
+                }
+            })
     }
 
     if (isLoading) {
@@ -65,7 +84,7 @@ const MyProducts = () => {
                                     <td className='py-4 px-4'>${product.sellingPrice}</td>
                                     <td className={`py-4 px-4 ${product.isSold ? 'text-warning' : 'text-success'}`}>{product.isSold ? 'Sold' : 'Available'}</td>
                                     <td className='py-2 px-4 flex justify-center flex-col items-center gap-1'>
-                                        <button className='btn btn-xs  w-20 btn-success'>Advertise</button>
+                                        <button onClick={() => handleAdvertise(product)} className='btn btn-xs  w-20 btn-success'>Advertise</button>
                                         <label onClick={() => setDeletingProduct(product)} htmlFor="confirmation-modal" className="btn btn-xs w-20 btn-error ">Delete</label>
                                     </td>
                                 </tr>)

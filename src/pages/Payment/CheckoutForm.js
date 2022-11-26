@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { AuthContext } from '../../contexts/AuthProvider';
 import SmallSpinner from '../../components/SmallSpinner';
+import toast from 'react-hot-toast';
 
 const CheckoutForm = ({ product }) => {
     const { user } = useContext(AuthContext);
@@ -88,6 +89,7 @@ const CheckoutForm = ({ product }) => {
                 .then(data => {
                     console.log(data);
                     if (data.acknowledged) {
+                        toast.success('Payment successful!')
                         setSuccess('Your payment successfully completed!');
                         setTransactionId(paymentIntent.id);
                     }
@@ -138,7 +140,7 @@ const CheckoutForm = ({ product }) => {
                 <p className='text-success'>{success}</p>
             }
             {
-                <p>Your transaction ID: <br /><span className='text-primary text-sm'>{transactionId}</span></p>
+                transactionId && <p>Your transaction ID: <br /><span className='text-primary text-sm'>{transactionId}</span></p>
             }
         </>
     );
