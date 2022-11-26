@@ -44,8 +44,11 @@ const MyProducts = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.acknowledged) {
-                    toast.success('Product added to advertized product')
+                if (data.acknowledged === 'sold') {
+                    toast.error('Sold product can not be advertised.')
+                }
+                else if (data.acknowledged) {
+                    toast.success('Product added to advertised product list')
                 } else {
                     toast.error('Already in advertised product list')
                 }
