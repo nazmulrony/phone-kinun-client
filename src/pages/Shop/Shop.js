@@ -13,7 +13,7 @@ const Shop = () => {
     const closeModal = () => {
         setSelectedProduct(null);
     }
-    const url = 'http://localhost:5000/all-products';
+    const url = 'https://phone-kinun-server-nazmulrony.vercel.app/all-products';
     const { data: products, isLoading } = useQuery({
         queryKey: ['products'],
         queryFn: () => axios.get(url)

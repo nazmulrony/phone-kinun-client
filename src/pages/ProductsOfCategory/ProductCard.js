@@ -30,7 +30,7 @@ const ProductCard = ({ product, setSelectedProduct }) => {
     } = product
     const { data: seller, isLoading } = useQuery({
         queryKey: ['seller', sellerEmail],
-        queryFn: () => axios.get(`http://localhost:5000/seller?email=${sellerEmail}`)
+        queryFn: () => axios.get(`https://phone-kinun-server-nazmulrony.vercel.app/seller?email=${sellerEmail}`)
             .then(data => {
                 return data.data;
             })
@@ -41,7 +41,7 @@ const ProductCard = ({ product, setSelectedProduct }) => {
             productId: _id
         }
         // console.log(wishlist);
-        fetch('http://localhost:5000/wishlist/add', {
+        fetch('https://phone-kinun-server-nazmulrony.vercel.app/wishlist/add', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

@@ -13,7 +13,7 @@ const ProductsOfCategory = () => {
     }
     const location = useLocation();
     const categoryId = location.pathname.split('/').at(-1);
-    const url = `http://localhost:5000/category/${categoryId}`;
+    const url = `https://phone-kinun-server-nazmulrony.vercel.app/category/${categoryId}`;
     const { data: products, isLoading } = useQuery({
         queryKey: ['products', categoryId],
         queryFn: () => axios.get(url)

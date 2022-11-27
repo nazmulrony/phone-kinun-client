@@ -5,18 +5,15 @@ import { AuthContext } from '../../contexts/AuthProvider';
 import AdvertisedCard from './AdvertisedCard';
 
 const Advertised = () => {
-    const { user, logOut } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const { data: advertises, isLoading } = useQuery({
         queryKey: ['advertises'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/advertise', {
+            const res = await fetch('https://phone-kinun-server-nazmulrony.vercel.app/advertise', {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
             })
-            if (res.status === 401 || res.status === 403) {
-                logOut();
-            }
             const data = res.json();
             return data;
         }

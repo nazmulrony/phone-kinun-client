@@ -10,7 +10,7 @@ const MyProducts = () => {
     const { user, logOut } = useContext(AuthContext);
     const [deletingProduct, setDeletingProduct] = useState(null);
     useTitle('My Product')
-    const url = `http://localhost:5000/products?email=${user?.email}`
+    const url = `https://phone-kinun-server-nazmulrony.vercel.app/products?email=${user?.email}`
     const { data: products, isLoading, refetch } = useQuery({
         queryKey: ['products', user?.email],
         queryFn: async () => {
@@ -29,7 +29,7 @@ const MyProducts = () => {
     })
     //delete product
     const handleDeleteProduct = (product) => {
-        fetch(`http://localhost:5000/products/delete/${product._id}`, {
+        fetch(`https://phone-kinun-server-nazmulrony.vercel.app/products/delete/${product._id}`, {
             method: 'DELETE',
         })
             .then(res => res.json())
@@ -45,7 +45,7 @@ const MyProducts = () => {
         const advertiseItem = {
             productId: product._id
         }
-        fetch('http://localhost:5000/advertise', {
+        fetch('https://phone-kinun-server-nazmulrony.vercel.app/advertise', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

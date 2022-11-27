@@ -53,7 +53,7 @@ const Signup = () => {
     // saving registered users to database
     const saveUserToDb = (name, email, role = 'buyer', isVerified = false) => {
         const user = { name, email, role, isVerified };
-        fetch('http://localhost:5000/users', {
+        fetch('https://phone-kinun-server-nazmulrony.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

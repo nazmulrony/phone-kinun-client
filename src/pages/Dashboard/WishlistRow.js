@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const WishlistRow = ({ productId, i }) => {
     const { data: product = [] } = useQuery({
         queryKey: ['product', productId],
-        queryFn: () => axios.get(`http://localhost:5000/products/${productId}`)
+        queryFn: () => axios.get(`https://phone-kinun-server-nazmulrony.vercel.app/products/${productId}`)
             .then(data => {
                 return data.data;
             })

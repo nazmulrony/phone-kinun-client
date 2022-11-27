@@ -17,7 +17,7 @@ const BookingModal = ({ selectedProduct, closeModal }) => {
             location: event.target.location.value,
             phone: event.target.phone.value,
         }
-        fetch('http://localhost:5000/products/add', {
+        fetch('https://phone-kinun-server-nazmulrony.vercel.app/products/add', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

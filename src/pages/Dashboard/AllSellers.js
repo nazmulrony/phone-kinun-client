@@ -14,7 +14,7 @@ const AllSellers = () => {
     const { data: sellers, isLoading, refetch } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users?role=seller', {
+            const res = await fetch('https://phone-kinun-server-nazmulrony.vercel.app/users?role=seller', {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
@@ -29,7 +29,7 @@ const AllSellers = () => {
     })
     //delete byers 
     const handleDeleteBuyer = seller => {
-        fetch(`http://localhost:5000/users/delete/${seller._id}`, {
+        fetch(`https://phone-kinun-server-nazmulrony.vercel.app/users/delete/${seller._id}`, {
             method: 'DELETE',
         })
             .then(res => res.json())
@@ -42,7 +42,7 @@ const AllSellers = () => {
     }
     //handle Verify seller
     const handleVerifySeller = seller => (
-        fetch(`http://localhost:5000/users/verify/${seller._id}`, {
+        fetch(`https://phone-kinun-server-nazmulrony.vercel.app/users/verify/${seller._id}`, {
             method: 'PUT',
         })
             .then(res => res.json())

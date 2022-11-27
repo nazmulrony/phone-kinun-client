@@ -18,7 +18,7 @@ const CheckoutForm = ({ product }) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://phone-kinun-server-nazmulrony.vercel.app/create-payment-intent", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ sellingPrice }),
@@ -78,7 +78,7 @@ const CheckoutForm = ({ product }) => {
                 productId: product._id,
                 transactionId: paymentIntent.id
             }
-            fetch('http://localhost:5000/payments', {
+            fetch('https://phone-kinun-server-nazmulrony.vercel.app/payments', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

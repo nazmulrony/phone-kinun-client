@@ -19,7 +19,7 @@ const AddProduct = () => {
     const { data: categories, isLoading } = useQuery(
         {
             queryKey: ['categories'],
-            queryFn: () => axios.get('http://localhost:5000/categories')
+            queryFn: () => axios.get('https://phone-kinun-server-nazmulrony.vercel.app/categories')
                 .then(data => {
                     return data.data;
                 })
@@ -53,7 +53,7 @@ const AddProduct = () => {
                     description: data.description,
                     isSold: false
                 }
-                fetch('http://localhost:5000/products', {
+                fetch('https://phone-kinun-server-nazmulrony.vercel.app/products', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
