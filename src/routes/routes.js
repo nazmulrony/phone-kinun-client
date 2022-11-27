@@ -14,6 +14,9 @@ import ProductsOfCategory from "../pages/ProductsOfCategory/ProductsOfCategory";
 import Login from "../pages/shared/Login";
 import Signup from "../pages/shared/Signup";
 import Shop from "../pages/Shop/Shop";
+import AdminRoute from "./AdminRoute";
+import BuyerRoute from "./BuyerRoute";
+import SellerRoute from "./SellerRoute";
 
 export const router = createBrowserRouter([
     {
@@ -51,32 +54,32 @@ export const router = createBrowserRouter([
                     },
                     {
                         path: '/dashboard/my-orders',
-                        element: <MyOrders />,
+                        element: <BuyerRoute><MyOrders /></BuyerRoute>,
                     },
                     {
                         path: '/dashboard/my-wishlist',
-                        element: <MyWishlist />,
+                        element: <BuyerRoute><MyWishlist /></BuyerRoute>,
                     },
                     {
                         path: '/dashboard/add-product',
-                        element: <AddProduct />,
+                        element: <SellerRoute><AddProduct /></SellerRoute>,
                     },
                     {
                         path: '/dashboard/my-products',
-                        element: <MyProducts />,
+                        element: <SellerRoute><MyProducts /></SellerRoute>,
                     },
                     {
                         path: '/dashboard/payment/:id',
-                        element: <Payment />,
+                        element: <BuyerRoute><Payment /></BuyerRoute>,
                         loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
                     },
                     {
                         path: '/dashboard/buyers',
-                        element: <AllBuyers />
+                        element: <AdminRoute><AllBuyers /></AdminRoute>
                     },
                     {
                         path: '/dashboard/sellers',
-                        element: <AllSellers />
+                        element: <AdminRoute><AllSellers /></AdminRoute>
                     },
                 ]
             },
