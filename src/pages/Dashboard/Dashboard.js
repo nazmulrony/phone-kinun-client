@@ -3,6 +3,7 @@ import { AuthContext } from '../../contexts/AuthProvider';
 import useAdmin from '../../hooks/useAdmin';
 import useBuyer from '../../hooks/useBuyer';
 import useSeller from '../../hooks/useSeller';
+import AllBuyers from './AllBuyers';
 import AllSellers from './AllSellers';
 import MyOrders from './MyOrders';
 import MyProducts from './MyProducts';
@@ -15,7 +16,7 @@ const Dashboard = () => {
     console.log(isAdmin, isSeller, isBuyer);
     return (
         <>
-            {isAdmin && <AllSellers />}
+            {isAdmin && <AllBuyers />}
             {isSeller && <MyProducts />}
             {isBuyer && <MyOrders />}
         </>

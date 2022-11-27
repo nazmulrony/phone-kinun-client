@@ -13,7 +13,7 @@ const Advertised = () => {
                 return data.data;
             })
     })
-    console.log(advertises);
+    // console.log(advertises);
     if (isLoading) {
         return <Spinner />
     }
