@@ -1,18 +1,29 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
+import { BsLayers } from 'react-icons/bs';
 import Spinner from '../../components/Spinner';
+import { AuthContext } from '../../contexts/AuthProvider';
 import ConfirmationModal from '../shared/ConfirmationModal';
 
 const AllBuyers = () => {
+    const { logOut } = useContext(AuthContext);
     const [deletingBuyer, setDeletingBuyer] = useState(null)
     const { data: buyers, isLoading, refetch } = useQuery({
         queryKey: ['buyers'],
-        queryFn: () => axios.get('http://localhost:5000/users?role=buyer')
-            .then(data => {
-                return data.data;
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/users?role=buyer', {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
             })
+            if (res.status === 401 || res.status === 403) {
+                logOut();
+            }
+            const data = res.json();
+            return data;
+        }
+
     })
     //delete byers 
     const handleDeleteBuyer = buyer => {
@@ -49,7 +60,7 @@ const AllBuyers = () => {
                     </thead>
                     <tbody className=' divide-y divide-gray-300'>
                         {
-                            buyers.map((buyer, i) =>
+                            BsLayers.length ? buyers.map((buyer, i) =>
                                 <tr
                                     className='text-center bg-slate-200 hover:bg-slate-300'
                                     key={buyer._id}
@@ -60,7 +71,7 @@ const AllBuyers = () => {
                                     <td className='py-2 px-4 flex justify-center flex-col items-center gap-1'>
                                         <label onClick={() => setDeletingBuyer(buyer)} htmlFor="confirmation-modal" className="btn btn-xs w-20 btn-error ">Delete</label>
                                     </td>
-                                </tr>)
+                                </tr>) : null
                         }
                     </tbody>
 

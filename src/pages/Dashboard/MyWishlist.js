@@ -1,18 +1,29 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import React, { useContext } from 'react';
 import Spinner from '../../components/Spinner';
 import { AuthContext } from '../../contexts/AuthProvider';
 import WishlistRow from './WishlistRow';
 
 const MyWishlist = () => {
-    const { user } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
     const { data: wishlist, isLoading } = useQuery({
         queryKey: ['wishlist', user?.email],
-        queryFn: () => axios(`http://localhost:5000/wishlist/${user?.email}`)
-            .then(data => {
-                return data.data
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/wishlist/${user?.email}`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
             })
+            if (res.status === 401 || res.status === 403) {
+                logOut();
+            }
+            const data = res.json();
+            return data;
+        }
+        // axios(`http://localhost:5000/wishlist/${user?.email}`)
+        //     .then(data => {
+        //         return data.data
+        //     })
     })
     // console.log(wishlist);
     if (isLoading) {
@@ -22,7 +33,7 @@ const MyWishlist = () => {
     return (
         <div className='px-4 lg:px-12 lg:py-6'>
             <h3 className='text-2xl text-primary text-center'>My Wishlist</h3>
-            {!wishlist.length && <h4 className='text-warning text-2xl text-center'>You haven't added any product to wishlist. </h4>}
+            {!wishlist.length && <h4 className='text-warning text-xl text-center'>You haven't added any product to wishlist. </h4>}
             <div className='my-4 overflow-x-auto'>
                 <table className='w-full shadow-lg shadow-black/10'>
                     <thead className='bg-primary text-light'>
@@ -37,11 +48,11 @@ const MyWishlist = () => {
                     </thead>
                     <tbody className=' divide-y divide-gray-300'>
                         {
-                            wishlist.map((list, i) => <WishlistRow
+                            wishlist.length ? wishlist.map((list, i) => <WishlistRow
                                 key={list._id}
                                 productId={list.productId}
                                 i={i}
-                            />)
+                            />) : null
                         }
                     </tbody>
 

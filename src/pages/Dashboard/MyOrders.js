@@ -1,19 +1,26 @@
 
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import React, { useContext } from 'react';
 import Spinner from '../../components/Spinner';
 import { AuthContext } from '../../contexts/AuthProvider';
 import OrderRow from './OrderRow';
 
 const MyOrders = () => {
-    const { user } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
     const { data: orders, isLoading } = useQuery({
         queryKey: ['oders', user?.email],
-        queryFn: () => axios(`http://localhost:5000/orders/${user?.email}`)
-            .then(data => {
-                return data.data
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/orders/${user?.email}`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
             })
+            if (res.status === 401 || res.status === 403) {
+                logOut();
+            }
+            const data = res.json();
+            return data;
+        }
     })
     // console.log(orders);
     if (isLoading) {
@@ -23,7 +30,7 @@ const MyOrders = () => {
     return (
         <div className='px-4 lg:px-12 lg:py-6'>
             <h3 className='text-2xl text-primary text-center'>My Orders</h3>
-            {!orders.length && <h4 className='text-warning text-2xl text-center'>You haven't ordered any product yet. </h4>}
+            {!orders.length && <h4 className='text-warning text-xl text-center'>You haven't ordered any product yet. </h4>}
             <div className='my-4 overflow-x-auto'>
                 <table className='w-full shadow-lg shadow-black/10'>
                     <thead className='bg-primary text-light'>
@@ -38,11 +45,11 @@ const MyOrders = () => {
                     </thead>
                     <tbody className=' divide-y divide-gray-300'>
                         {
-                            orders.map((order, i) => <OrderRow
+                            orders.length ? orders.map((order, i) => <OrderRow
                                 key={order._id}
                                 productId={order.productId}
                                 i={i}
-                            />)
+                            />) : null
                         }
                     </tbody>
 

@@ -40,11 +40,12 @@ const ProductCard = ({ product, setSelectedProduct }) => {
             userEmail: user?.email,
             productId: _id
         }
-        console.log(wishlist);
+        // console.log(wishlist);
         fetch('http://localhost:5000/wishlist/add', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(wishlist)
         })

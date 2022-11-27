@@ -1,18 +1,28 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import Spinner from '../../components/Spinner';
+import { AuthContext } from '../../contexts/AuthProvider';
 import ConfirmationModal from '../shared/ConfirmationModal';
 
 const AllSellers = () => {
+    const { logOut } = useContext(AuthContext);
     const [deletingSeller, setDeletingSeller] = useState(null)
     const { data: sellers, isLoading, refetch } = useQuery({
         queryKey: ['sellers'],
-        queryFn: () => axios.get('http://localhost:5000/users?role=seller')
-            .then(data => {
-                return data.data;
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/users?role=seller', {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
             })
+            if (res.status === 401 || res.status === 403) {
+                logOut();
+            }
+            const data = res.json();
+            return data;
+        }
+
     })
     //delete byers 
     const handleDeleteBuyer = seller => {
@@ -64,7 +74,7 @@ const AllSellers = () => {
                     </thead>
                     <tbody className=' divide-y divide-gray-300'>
                         {
-                            sellers.map((seller, i) =>
+                            sellers.length ? sellers.map((seller, i) =>
                                 <tr
                                     className='text-center bg-slate-200 hover:bg-slate-300'
                                     key={seller._id}
@@ -76,7 +86,7 @@ const AllSellers = () => {
                                         <button onClick={() => handleVerifySeller(seller)} disabled={seller.isVerified} className='btn btn-xs w-20 btn-primary'>Verify</button>
                                         <label onClick={() => setDeletingSeller(seller)} htmlFor="confirmation-modal" className="btn btn-xs w-20 btn-error ">Delete</label>
                                     </td>
-                                </tr>)
+                                </tr>) : null
                         }
                     </tbody>
 

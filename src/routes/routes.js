@@ -13,6 +13,7 @@ import Payment from "../pages/Payment/Payment";
 import ProductsOfCategory from "../pages/ProductsOfCategory/ProductsOfCategory";
 import Login from "../pages/shared/Login";
 import Signup from "../pages/shared/Signup";
+import Shop from "../pages/Shop/Shop";
 
 export const router = createBrowserRouter([
     {
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
             {
                 path: '/category/:id',
                 element: <ProductsOfCategory />,
+            },
+            {
+                path: '/shop',
+                element: <Shop />,
             },
 
             {

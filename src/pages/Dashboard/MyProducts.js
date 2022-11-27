@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import Spinner from '../../components/Spinner';
@@ -7,16 +6,23 @@ import { AuthContext } from '../../contexts/AuthProvider';
 import ConfirmationModal from '../shared/ConfirmationModal';
 
 const MyProducts = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     const [deletingProduct, setDeletingProduct] = useState(null)
     const url = `http://localhost:5000/products?email=${user?.email}`
     const { data: products, isLoading, refetch } = useQuery({
         queryKey: ['products', user?.email],
-        queryFn: () => axios.get(url)
-            .then(data => {
-                // console.log(data);
-                return data.data;
+        queryFn: async () => {
+            const res = await fetch(url, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
             })
+            if (res.status === 401 || res.status === 403) {
+                logOut();
+            }
+            const data = res.json();
+            return data;
+        }
 
     })
     //delete product
@@ -65,7 +71,7 @@ const MyProducts = () => {
     return (
         <div className='px-4 lg:px-12 lg:py-6'>
             <h3 className='text-2xl text-primary text-center'>My Products</h3>
-            {!products.length && <h4 className='text-warning text-2xl text-center'>You haven't added any product yet. </h4>}
+            {!products.length && <h4 className='text-warning text-xl text-center'>You haven't added any product yet. </h4>}
             <div className='my-4 overflow-x-auto'>
                 <table className='w-full shadow-lg shadow-black/10'>
                     <thead className='bg-primary text-light'>
@@ -79,7 +85,7 @@ const MyProducts = () => {
                     </thead>
                     <tbody className=' divide-y divide-gray-300'>
                         {
-                            products.map((product, i) =>
+                            products.length ? products.map((product, i) =>
                                 <tr
                                     className='text-center bg-slate-200 hover:bg-slate-300'
                                     key={product._id}
@@ -92,7 +98,7 @@ const MyProducts = () => {
                                         <button onClick={() => handleAdvertise(product)} className='btn btn-xs  w-20 btn-success'>Advertise</button>
                                         <label onClick={() => setDeletingProduct(product)} htmlFor="confirmation-modal" className="btn btn-xs w-20 btn-error ">Delete</label>
                                     </td>
-                                </tr>)
+                                </tr>) : null
                         }
                     </tbody>
 

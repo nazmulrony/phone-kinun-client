@@ -1,17 +1,21 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
     const [navbar, setNavbar] = useState(false);
-
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        logOut();
+        navigate('/login')
+    }
     return (
-        <nav className="w-full">
+        <nav className="w-full sticky bg-brand top-0 z-20">
             <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
                 <div>
-                    <div className="flex items-center justify-between py-3 md:py-5 md:block">
+                    <div className="flex items-center justify-between py-3 md:block">
                         <Link to="/">
                             <h2 className="text-2xl font-bold flex items-center gap-2">
                                 <img src={logo} alt="" className='h-12' />
@@ -68,14 +72,16 @@ const Navbar = () => {
                             <li className="text-gray-600 hover:text-blue-600">
                                 <Link to="/shop">Shop</Link>
                             </li>
-                            <li className="text-gray-600 hover:text-blue-600">
-                                <Link to="/dashboard">Dashboard</Link>
-                            </li>
+
                             {
                                 user ?
-                                    <li className="text-gray-600 hover:text-blue-600">
-                                        <button onClick={logOut}> Logout</button>
-                                    </li>
+                                    <>
+                                        <li className="text-gray-600 hover:text-blue-600">
+                                            <Link to="/dashboard">Dashboard</Link>
+                                        </li>
+                                        <li className="text-gray-600 hover:text-blue-600">
+                                            <button onClick={handleLogout}> Logout</button>
+                                        </li></>
                                     :
                                     <>
                                         <li className="text-gray-600 hover:text-blue-600">

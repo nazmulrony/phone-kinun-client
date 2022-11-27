@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { } from 'react';
 import SmallSpinner from '../../components/SmallSpinner';
 import { BsFillCalendarFill } from 'react-icons/bs';
 import { MdLocationPin } from 'react-icons/md';
@@ -17,7 +17,7 @@ const AdvertisedCard = ({ productId }) => {
     if (isLoading) {
         return <SmallSpinner />
     }
-    console.log(product);
+    // console.log(product);
     return (
         <>
             {product && !product.isSold &&

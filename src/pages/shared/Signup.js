@@ -1,21 +1,29 @@
-import React, { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 // import useToken from '../hooks/useToken';
 import { AuthContext } from '../../contexts/AuthProvider';
+import useToken from '../../hooks/useToken';
 
 const Signup = () => {
     const { createUser, updateUser, googleSignIn, setLoading } = useContext(AuthContext)
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [signupError, setSignupError] = useState('');
     const [userEmail, setUserEmail] = useState('');
-    // const [token] = useToken(userEmail)
+    const [token] = useToken(userEmail);
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
     const navigate = useNavigate();
-    // if (token) {
-    //     navigate('/');
-    // }
+
+    useEffect(() => {
+        if (token) {
+            navigate(from, { replace: true });
+        }
+    }, [token, navigate, from])
+
+
     const handleSignup = data => {
         setSignupError('');
         const role = data.role ? data.role : 'buyer';
@@ -54,9 +62,10 @@ const Signup = () => {
             .then(data => {
                 console.log(data);
                 setUserEmail(email);
+
+
             })
     }
-    console.log(userEmail);
     //handle google sign in
     const handleGoogleSingIn = () => {
         googleSignIn()

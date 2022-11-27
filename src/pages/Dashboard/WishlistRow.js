@@ -21,9 +21,7 @@ const WishlistRow = ({ productId, i }) => {
                 >
                     <td className='py-4 px-4'>{i + 1}</td>
                     <td className='py-2 px-4 grid place-items-center'>
-                        <div className="w-24 mask mask-squircle">
-                            <img src={product.image} alt="doctor-img" />
-                        </div>
+                        <img src={product.image} alt="doctor-img" className='w-24 mask mask-squircle' />
                     </td>
                     <td className='py-4 px-4'>{product.name}</td>
                     <td className='py-4 px-4'>${product.sellingPrice}</td>

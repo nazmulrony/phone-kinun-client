@@ -3,24 +3,24 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../contexts/AuthProvider';
+import useToken from '../../hooks/useToken';
 
-// import useToken from '../hooks/useToken';
 
 const Login = () => {
     const { loginUser, googleSignIn, setLoading } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [loginError, setLoginError] = useState('');
     const [loginUserEmail, setLoginUserEmail] = useState('')
-    // const [token] = useToken(loginUserEmail);
+    const [token] = useToken(loginUserEmail);
     const location = useLocation();
     const from = location.state?.from?.pathname || '/'
     const navigate = useNavigate()
 
-    // useEffect(() => {
-    //     if (token) {
-    //         navigate(from, { replace: true });
-    //     }
-    // }, [token, from, navigate])
+    useEffect(() => {
+        if (token) {
+            navigate(from, { replace: true });
+        }
+    }, [token, from, navigate])
 
     const handleLogin = data => {
         setLoginError('')
@@ -53,7 +53,6 @@ const Login = () => {
                 setLoginUserEmail(email);
             })
     }
-    console.log(loginUserEmail);
 
     //handle google sign in
     const handleGoogleSingIn = () => {

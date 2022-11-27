@@ -4,7 +4,6 @@ import useAdmin from '../../hooks/useAdmin';
 import useBuyer from '../../hooks/useBuyer';
 import useSeller from '../../hooks/useSeller';
 import AllBuyers from './AllBuyers';
-import AllSellers from './AllSellers';
 import MyOrders from './MyOrders';
 import MyProducts from './MyProducts';
 
@@ -13,7 +12,7 @@ const Dashboard = () => {
     const [isAdmin] = useAdmin(user?.email);
     const [isSeller] = useSeller(user?.email);
     const [isBuyer] = useBuyer(user?.email);
-    console.log(isAdmin, isSeller, isBuyer);
+    // console.log(isAdmin, isSeller, isBuyer);
     return (
         <>
             {isAdmin && <AllBuyers />}
