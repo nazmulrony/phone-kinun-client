@@ -7,7 +7,7 @@ import toast from 'react-hot-toast'
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const Signup = () => {
-    const { createUser, updateUser } = useContext(AuthContext)
+    const { createUser, updateUser, googleSignIn, setLoading } = useContext(AuthContext)
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [signupError, setSignupError] = useState('');
     const [userEmail, setUserEmail] = useState('');
@@ -30,7 +30,7 @@ const Signup = () => {
                 //update user profile 
                 updateUser(userInfo)
                     .then(result => {
-                        saveUserToDb(data.name, data.email, role)
+                        saveUserToDb(data.name, data.email, role);
                     })
                     .catch(error => { })
             })
@@ -41,7 +41,7 @@ const Signup = () => {
     }
 
     // saving registered users to database
-    const saveUserToDb = (name, email, role, isVerified = false) => {
+    const saveUserToDb = (name, email, role = 'buyer', isVerified = false) => {
         const user = { name, email, role, isVerified };
         fetch('http://localhost:5000/users', {
             method: 'POST',
@@ -54,6 +54,20 @@ const Signup = () => {
             .then(data => {
                 console.log(data);
                 setUserEmail(email);
+            })
+    }
+    console.log(userEmail);
+    //handle google sign in
+    const handleGoogleSingIn = () => {
+        googleSignIn()
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                saveUserToDb(user.displayName, user.email);
+            })
+            .catch(error => {
+                setSignupError(error.message);
+                setLoading(false);
             })
     }
 
@@ -124,7 +138,6 @@ const Signup = () => {
                             />
                             <label htmlFor="seller">Seller</label>
                         </div>
-
                     </div>
                     {
                         signupError && <p className='text-red-600 mb-1 text-sm'>{signupError}</p>
@@ -136,7 +149,12 @@ const Signup = () => {
                 </form>
                 <p className='text-center text-sm my-3'>Already have an account? <Link to="/login" className=' text-primary'>Login</Link></p>
                 <div className="divider">OR</div>
-                <button className='btn btn-outline btn-primary w-full'><FaGoogle className='text-xl mr-2' /> Continue with Google</button>
+                <button
+                    onClick={handleGoogleSingIn}
+                    className='btn btn-outline btn-primary w-full'>
+                    <FaGoogle className='text-xl mr-2' />
+                    Continue with Google
+                </button>
             </div>
         </div>
     );

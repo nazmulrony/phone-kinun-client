@@ -7,7 +7,7 @@ import { AuthContext } from '../../contexts/AuthProvider';
 // import useToken from '../hooks/useToken';
 
 const Login = () => {
-    const { loginUser } = useContext(AuthContext);
+    const { loginUser, googleSignIn, setLoading } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [loginError, setLoginError] = useState('');
     const [loginUserEmail, setLoginUserEmail] = useState('')
@@ -36,6 +36,39 @@ const Login = () => {
                 setLoginError(error.message);
             })
     }
+
+    // saving registered users to database
+    const saveUserToDb = (name, email, role = 'buyer', isVerified = false) => {
+        const user = { name, email, role, isVerified };
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setLoginUserEmail(email);
+            })
+    }
+    console.log(loginUserEmail);
+
+    //handle google sign in
+    const handleGoogleSingIn = () => {
+        googleSignIn()
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                saveUserToDb(user.displayName, user.email);
+            })
+            .catch(error => {
+                setLoginError(error.message);
+                setLoading(false);
+            })
+    }
+
     return (
         <div className='p-4'>
             <div className='mx-auto py-6 bg-light max-w-md px-6 rounded-xl shadow-lg shadow-black/10'>
@@ -77,7 +110,7 @@ const Login = () => {
                 </form>
                 <p className='text-center text-sm my-3'>New to Dental Lab? <Link to="/signup" className=' text-primary'>Create new account</Link></p>
                 <div className="divider">OR</div>
-                <button className='btn btn-outline btn-primary w-full'><FaGoogle className='text-xl mr-2' /> Continue with Google</button>
+                <button onClick={handleGoogleSingIn} className='btn btn-outline btn-primary w-full'><FaGoogle className='text-xl mr-2' /> Continue with Google</button>
             </div>
         </div>
     );

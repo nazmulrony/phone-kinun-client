@@ -19,6 +19,7 @@ const MyProducts = () => {
             })
 
     })
+    //delete product
     const handleDeleteProduct = (product) => {
         fetch(`http://localhost:5000/products/delete/${product._id}`, {
             method: 'DELETE',
@@ -31,6 +32,7 @@ const MyProducts = () => {
                 }
             })
     }
+    //add to advertise
     const handleAdvertise = (product) => {
         const advertiseItem = {
             productId: product._id
@@ -100,7 +102,7 @@ const MyProducts = () => {
             {
                 deletingProduct && <ConfirmationModal
                     title={'Are you sure you want to delete?'}
-                    message={`If you delete ${deletingProduct.name}, You can not recover it!`}
+                    message={`If you delete ${deletingProduct.name}, If you do so, you can not recover it!`}
                     modalData={deletingProduct}
                     successAction={handleDeleteProduct}
                     successBtnName={'Confirm'}

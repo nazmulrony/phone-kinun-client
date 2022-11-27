@@ -1,17 +1,34 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import Spinner from '../../components/Spinner';
+import ConfirmationModal from '../shared/ConfirmationModal';
 
 const AllBuyers = () => {
     const [deletingBuyer, setDeletingBuyer] = useState(null)
-    const { data: buyers, isLoading } = useQuery({
+    const { data: buyers, isLoading, refetch } = useQuery({
         queryKey: ['buyers'],
         queryFn: () => axios.get('http://localhost:5000/users?role=buyer')
             .then(data => {
                 return data.data;
             })
     })
+    //delete byers 
+    const handleDeleteBuyer = buyer => {
+        fetch(`http://localhost:5000/users/delete/${buyer._id}`, {
+            method: 'DELETE',
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    toast.success('Buyer successfully deleted')
+                    refetch()
+                }
+            })
+    }
+
+
     if (isLoading) {
         return <Spinner />
     }
@@ -19,7 +36,7 @@ const AllBuyers = () => {
     return (
         <div className='px-4 lg:px-12 lg:py-6'>
             <h3 className='text-2xl text-primary text-center'>All Buyers</h3>
-            {!buyers.length && <h4 className='text-warning text-2xl text-center'>You haven't buyers any product yet. </h4>}
+            {!buyers.length && <h4 className='text-warning text-2xl text-center'>You haven't any buyers yet. </h4>}
             <div className='my-4 overflow-x-auto'>
                 <table className='w-full shadow-lg shadow-black/10'>
                     <thead className='bg-primary text-light'>
@@ -51,13 +68,13 @@ const AllBuyers = () => {
                 </table>
             </div>
             {
-                // deletingProduct && <ConfirmationModal
-                //     title={'Are you sure you want to delete?'}
-                //     message={`If you delete ${deletingProduct.name}, You can not recover it!`}
-                //     modalData={deletingProduct}
-                //     successAction={handleDeleteProduct}
-                //     successBtnName={'Confirm'}
-                // />
+                deletingBuyer && <ConfirmationModal
+                    title={'Are you sure you want to delete?'}
+                    message={`If you delete user named ${deletingBuyer.name}, If you do so, you can not recover it!`}
+                    modalData={deletingBuyer}
+                    successAction={handleDeleteBuyer}
+                    successBtnName={'Confirm'}
+                />
             }
         </div>
     );
