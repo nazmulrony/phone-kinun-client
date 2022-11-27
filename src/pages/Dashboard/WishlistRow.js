@@ -11,7 +11,7 @@ const WishlistRow = ({ productId, i }) => {
                 return data.data;
             })
     })
-    console.log(product);
+    // console.log(product);
     return (
         <>
             {

@@ -27,13 +27,13 @@ const ProductsOfCategory = () => {
     }
     // console.log(selectedProduct);
     return (
-        <div className='my-6 lg:px-20'>
+        <div className='my-6 lg:px-16'>
             <h2 className='text-2xl text-primary my-6 text-center hover:text-teal-600 duration-500'>
                 {
                     products.length ? `Find the best product from ${products[0].category}` : 'No Product Listed in This Category!'
                 }
             </h2>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4'>
                 {
                     products.map(product => <ProductCard
                         key={product._id}
