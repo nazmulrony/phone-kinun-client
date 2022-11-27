@@ -7,7 +7,7 @@ const Blog = () => {
         <div className='my-10 px-4 lg:px-20'>
             <h1 className='text-4xl mb-4 text-primary text-center'>Frequently Asked Questions</h1>
             <div className='flex flex-col gap-8'>
-                <div className=" bg-primary/10 shadow-xl p-6">
+                <div className=" bg-primary/10 shadow-xl lg:p-6">
                     <div className="card-body  text-justify ">
                         <h2 className="card-title text-primary">What are the different ways to manage a state in a React application?</h2>
                         <p>We can manage state in a React application in the following ways-</p>
@@ -16,7 +16,7 @@ const Blog = () => {
                         <p><strong>useContext: </strong> React Context is a way to manage state globally. It can be used together with the useState Hook to share state between deeply nested components more easily than with useState alone.</p>
                     </div>
                 </div>
-                <div className=" bg-primary/10 shadow-xl p-6">
+                <div className=" bg-primary/10 shadow-xl lg:p-6">
                     <div className="card-body text-justify  ">
                         <h2 className="card-title text-primary">How does prototypical inheritance work?</h2>
                         <p>Prototypical inheritance refers to the ability to access object properties from another object. We use a JavaScript prototype to add new properties and methods to an existing object constructor. We can then essentially tell our JS code to inherit properties from a prototype. Prototypical inheritance allows us to reuse the properties or methods from one JavaScript object to another through a reference pointer function.</p>
@@ -24,7 +24,7 @@ const Blog = () => {
 
 
                 </div>
-                <div className=" bg-primary/10 shadow-xl p-6">
+                <div className=" bg-primary/10 shadow-xl lg:p-6">
                     <div className="card-body text-justify  ">
                         <h2 className="card-title text-primary">What is a unit test? Why should we write unit tests?</h2>
                         <p>In computer programming, unit testing is a software testing method by which individual units of source code—sets of one or more computer program modules together with associated control data, usage procedures, and operating procedures—are tested to determine whether they are fit for use.</p>
@@ -32,7 +32,7 @@ const Blog = () => {
                         <p className='mt-2'>Unit testing ensures that all code meets quality standards before it's deployed. This ensures a reliable engineering environment where quality is paramount. Over the course of the product development life cycle, unit testing saves time and money, and helps developers write better code, more efficiently. </p>
                     </div>
                 </div>
-                <div className=" bg-primary/10 shadow-xl p-6">
+                <div className=" bg-primary/10 shadow-xl lg:p-6">
                     <div className="card-body  text-justify ">
                         <h2 className="card-title text-primary">React vs. Angular vs. Vue?</h2>
                         <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>

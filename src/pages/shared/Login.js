@@ -4,10 +4,11 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../contexts/AuthProvider';
 import useToken from '../../hooks/useToken';
+import SmallSpinner from '../../components/SmallSpinner';
 
 
 const Login = () => {
-    const { loginUser, googleSignIn, setLoading } = useContext(AuthContext);
+    const { loginUser, googleSignIn, setLoading, loading } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [loginError, setLoginError] = useState('');
     const [loginUserEmail, setLoginUserEmail] = useState('')
@@ -102,10 +103,8 @@ const Login = () => {
                     {
                         loginError && <p className='text-red-600 mb-1 text-sm'>{loginError}</p>
                     }
-                    <input
-                        value="Login"
-                        type="submit"
-                        className='btn btn-primary w-full' />
+                    <button type='submit' className='btn btn-primary w-full'>{loading ? <SmallSpinner /> : 'Login'}</button>
+
                 </form>
                 <p className='text-center text-sm my-3'>New to Dental Lab? <Link to="/signup" className=' text-primary'>Create new account</Link></p>
                 <div className="divider">OR</div>

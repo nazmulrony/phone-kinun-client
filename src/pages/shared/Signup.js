@@ -6,9 +6,10 @@ import toast from 'react-hot-toast'
 // import useToken from '../hooks/useToken';
 import { AuthContext } from '../../contexts/AuthProvider';
 import useToken from '../../hooks/useToken';
+import SmallSpinner from '../../components/SmallSpinner';
 
 const Signup = () => {
-    const { createUser, updateUser, googleSignIn, setLoading } = useContext(AuthContext)
+    const { createUser, updateUser, googleSignIn, setLoading, loading } = useContext(AuthContext)
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [signupError, setSignupError] = useState('');
     const [userEmail, setUserEmail] = useState('');
@@ -45,6 +46,7 @@ const Signup = () => {
             .catch(error => {
                 console.error(error)
                 setSignupError(error.message);
+                setLoading(false);
             })
     }
 
@@ -62,8 +64,6 @@ const Signup = () => {
             .then(data => {
                 console.log(data);
                 setUserEmail(email);
-
-
             })
     }
     //handle google sign in
@@ -151,6 +151,7 @@ const Signup = () => {
                     {
                         signupError && <p className='text-red-600 mb-1 text-sm'>{signupError}</p>
                     }
+                    <button type='submit' className='btn btn-primary w-full'>{loading ? <SmallSpinner /> : 'Sign Up'}</button>
                     <input
                         value='Sign Up'
                         type="submit"
