@@ -95,7 +95,7 @@ const MyProducts = () => {
                                     <td className='py-4 px-4'>{i + 1}</td>
                                     <td className='py-4 px-4'>{product.name}</td>
                                     <td className='py-4 px-4'>${product.sellingPrice}</td>
-                                    <td className={`py-4 px-4 ${product.isSold ? 'text-warning' : 'text-success'}`}>{product.isSold ? 'Sold' : 'Available'}</td>
+                                    <td className={`py-4 px-4 font-semibold ${product.isSold ? 'text-warning' : 'text-success'}`}>{product.isSold ? 'Sold' : 'Available'}</td>
                                     <td className='py-2 px-4 flex justify-center flex-col items-center gap-1'>
                                         <button onClick={() => handleAdvertise(product)} className='btn btn-xs  w-20 btn-success'>Advertise</button>
                                         <label onClick={() => setDeletingProduct(product)} htmlFor="confirmation-modal" className="btn btn-xs w-20 btn-error ">Delete</label>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, ScrollRestoration } from 'react-router-dom';
 import Footer from '../pages/shared/Footer';
 import Navbar from '../pages/shared/Navbar';
 
@@ -9,6 +9,7 @@ const Main = () => {
             <Navbar></Navbar>
             <div className='min-h-screen'>
                 <Outlet></Outlet>
+                <ScrollRestoration />
             </div>
             <Footer />
         </div>

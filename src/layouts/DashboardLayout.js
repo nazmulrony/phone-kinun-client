@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, ScrollRestoration } from 'react-router-dom';
 import { MdOutlineSpaceDashboard } from 'react-icons/md'
 import { AuthContext } from '../contexts/AuthProvider';
 import useAdmin from '../hooks/useAdmin';
@@ -22,6 +22,7 @@ const DashboardLayout = () => {
                     <label htmlFor="dashboard-drawer" className="btn btn-primary drawer-button lg:hidden"> <MdOutlineSpaceDashboard className='text-2xl' /> </label>
                 </div>
                 <Outlet />
+                <ScrollRestoration />
 
             </div>
             <div className="drawer-side">

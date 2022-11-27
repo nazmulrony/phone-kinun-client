@@ -5,6 +5,7 @@ import Spinner from '../../components/Spinner';
 import { AuthContext } from '../../contexts/AuthProvider';
 import useTitle from '../../hooks/useTitle';
 import ConfirmationModal from '../shared/ConfirmationModal';
+import { GoVerified } from 'react-icons/go';
 
 const AllSellers = () => {
     const { logOut } = useContext(AuthContext);
@@ -62,7 +63,7 @@ const AllSellers = () => {
 
     return (
         <div className='px-4 lg:px-12 lg:py-6'>
-            <h3 className='text-2xl text-primary text-center'>All Buyers</h3>
+            <h3 className='text-2xl text-primary text-center'>All Sellers</h3>
             {!sellers.length && <h4 className='text-warning text-2xl text-center'>You haven't  any sellers yet. </h4>}
             <div className='my-4 overflow-x-auto'>
                 <table className='w-full shadow-lg shadow-black/10'>
@@ -71,6 +72,7 @@ const AllSellers = () => {
                             <th className='px-4 py-2'>S/N</th>
                             <th className='px-4 py-2'>Name</th>
                             <th className='px-4 py-2'>Email</th>
+                            <th className='px-4 py-2'>Status</th>
                             <th className='px-4 py-2'>Action</th>
                         </tr>
                     </thead>
@@ -84,6 +86,7 @@ const AllSellers = () => {
                                     <td className='py-4 px-4'>{i + 1}</td>
                                     <td className='py-4 px-4'>{seller.name}</td>
                                     <td className='py-4 px-4'>{seller.email}</td>
+                                    <td className={`py-4 px-4 font font-semibold ${seller.isVerified ? 'text-success' : 'text-error'}`}> <p className='flex justify-center items-center gap-1'>{seller.isVerified ? 'Verified' : 'Unverified'} <GoVerified /></p></td>
                                     <td className='py-2 px-4 flex justify-center flex-col items-center gap-1'>
                                         <button onClick={() => handleVerifySeller(seller)} disabled={seller.isVerified} className='btn btn-xs w-20 btn-primary'>Verify</button>
                                         <label onClick={() => setDeletingSeller(seller)} htmlFor="confirmation-modal" className="btn btn-xs w-20 btn-error ">Delete</label>
