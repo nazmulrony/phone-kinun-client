@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 import SmallSpinner from '../../components/SmallSpinner';
 import { BsFillCalendarFill } from 'react-icons/bs';
 import { MdLocationPin } from 'react-icons/md';
 
 const AdvertisedCard = ({ productId }) => {
-    const { data: product, isLoading } = useQuery({
+    const { data: product = [], isLoading } = useQuery({
         queryKey: ['product', productId],
         queryFn: () => axios.get(`http://localhost:5000/products/${productId}`)
             .then(data => {
@@ -17,6 +17,7 @@ const AdvertisedCard = ({ productId }) => {
     if (isLoading) {
         return <SmallSpinner />
     }
+    console.log(product);
     return (
         <>
             {product && !product.isSold &&
