@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import hero from '../../assets/hero.jpg';
+import hero from '../../assets/hero.png';
 
 const Banner = () => {
     return (
@@ -8,7 +8,7 @@ const Banner = () => {
             <div className='grid grid-cols-1 gap-3 md:grid-cols-2 px-4 lg:px-16'>
                 <div className='text-light'>
                     <h1 className='text-4xl lg:text-7xl font-semibold'>Spend Small and Have Great Phones at <span className='text-primary'>Phone</span> <span className='text-primary'>Kinun</span></h1>
-                    <Link to="/"><button className='btn btn-primary my-3'>Explore Phones</button></Link>
+                    <Link to="/shop"><button className='btn btn-primary rounded-none my-3'>Explore Phones</button></Link>
                 </div>
                 <div className='row-start-1 md:col-start-2'>
                     <img src={hero} alt="" />

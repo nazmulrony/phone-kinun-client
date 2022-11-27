@@ -3,11 +3,13 @@ import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import Spinner from '../../components/Spinner';
 import { AuthContext } from '../../contexts/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 import ConfirmationModal from '../shared/ConfirmationModal';
 
 const AllSellers = () => {
     const { logOut } = useContext(AuthContext);
-    const [deletingSeller, setDeletingSeller] = useState(null)
+    const [deletingSeller, setDeletingSeller] = useState(null);
+    useTitle('All Sellers')
     const { data: sellers, isLoading, refetch } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {

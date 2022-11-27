@@ -16,6 +16,7 @@ import Signup from "../pages/shared/Signup";
 import Shop from "../pages/Shop/Shop";
 import AdminRoute from "./AdminRoute";
 import BuyerRoute from "./BuyerRoute";
+import PrivateRoute from "./PrivateRoute";
 import SellerRoute from "./SellerRoute";
 
 export const router = createBrowserRouter([
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
                 element: <Home />
             },
             {
+                path: '/home',
+                element: <Home />
+            },
+            {
                 path: '/login',
                 element: <Login />
             },
@@ -37,11 +42,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/category/:id',
-                element: <ProductsOfCategory />,
+                element: <PrivateRoute><ProductsOfCategory /></PrivateRoute>,
             },
             {
                 path: '/shop',
-                element: <Shop />,
+                element: <PrivateRoute><Shop /></PrivateRoute>,
             },
 
             {

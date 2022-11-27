@@ -3,11 +3,13 @@ import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import Spinner from '../../components/Spinner';
 import { AuthContext } from '../../contexts/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 import ConfirmationModal from '../shared/ConfirmationModal';
 
 const MyProducts = () => {
     const { user, logOut } = useContext(AuthContext);
-    const [deletingProduct, setDeletingProduct] = useState(null)
+    const [deletingProduct, setDeletingProduct] = useState(null);
+    useTitle('My Product')
     const url = `http://localhost:5000/products?email=${user?.email}`
     const { data: products, isLoading, refetch } = useQuery({
         queryKey: ['products', user?.email],

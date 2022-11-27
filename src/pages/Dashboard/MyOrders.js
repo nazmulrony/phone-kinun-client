@@ -3,10 +3,12 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import Spinner from '../../components/Spinner';
 import { AuthContext } from '../../contexts/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 import OrderRow from './OrderRow';
 
 const MyOrders = () => {
-    const { user, logOut } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext);
+    useTitle('My Orders');
     const { data: orders, isLoading } = useQuery({
         queryKey: ['oders', user?.email],
         queryFn: async () => {

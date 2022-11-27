@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import { AuthContext } from '../../contexts/AuthProvider';
 
@@ -66,29 +66,32 @@ const Navbar = () => {
                             }`}
                     >
                         <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-                            <li className="text-gray-600 hover:text-blue-600">
-                                <Link to="/">Home</Link>
+                            <li className="text-gray-600 hover:text-primary font-semibold">
+                                <NavLink className={({ isActive }) => isActive ? 'text-primary underline underline-offset-2' : undefined} to="/">Home</NavLink>
                             </li>
-                            <li className="text-gray-600 hover:text-blue-600">
-                                <Link to="/shop">Shop</Link>
+                            <li className="text-gray-600 hover:text-primary font-semibold">
+                                <NavLink className={({ isActive }) => isActive ? 'text-primary underline underline-offset-2' : undefined} to="/shop">Shop</NavLink>
+                            </li>
+                            <li className="text-gray-600 hover:text-primary font-semibold">
+                                <NavLink className={({ isActive }) => isActive ? 'text-primary underline underline-offset-2' : undefined} to="/blog">Blog</NavLink>
                             </li>
 
                             {
                                 user ?
                                     <>
-                                        <li className="text-gray-600 hover:text-blue-600">
-                                            <Link to="/dashboard">Dashboard</Link>
+                                        <li className="text-gray-600 hover:text-primary font-semibold">
+                                            <NavLink className={({ isActive }) => isActive ? 'text-primary underline underline-offset-2' : undefined} to="/dashboard">Dashboard</NavLink>
                                         </li>
-                                        <li className="text-gray-600 hover:text-blue-600">
+                                        <li className="text-gray-600 hover:text-primary font-semibold">
                                             <button onClick={handleLogout}> Logout</button>
                                         </li></>
                                     :
                                     <>
-                                        <li className="text-gray-600 hover:text-blue-600">
-                                            <Link to="/login">Login</Link>
+                                        <li className="text-gray-600 hover:text-primary font-semibold">
+                                            <NavLink className={({ isActive }) => isActive ? 'text-primary underline underline-offset-2' : undefined} to="/login">Login</NavLink>
                                         </li>
-                                        <li className="text-gray-600 hover:text-blue-600">
-                                            <Link to="/signup">Sign Up</Link>
+                                        <li className="text-gray-600 hover:text-primary font-semibold">
+                                            <NavLink className={({ isActive }) => isActive ? 'text-primary underline underline-offset-2' : undefined} to="/signup">Sign Up</NavLink>
                                         </li>
                                     </>
                             }

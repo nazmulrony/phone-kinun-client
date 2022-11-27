@@ -4,11 +4,13 @@ import toast from 'react-hot-toast';
 import { BsLayers } from 'react-icons/bs';
 import Spinner from '../../components/Spinner';
 import { AuthContext } from '../../contexts/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 import ConfirmationModal from '../shared/ConfirmationModal';
 
 const AllBuyers = () => {
     const { logOut } = useContext(AuthContext);
     const [deletingBuyer, setDeletingBuyer] = useState(null)
+    useTitle('All Buyers')
     const { data: buyers, isLoading, refetch } = useQuery({
         queryKey: ['buyers'],
         queryFn: async () => {

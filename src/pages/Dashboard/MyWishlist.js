@@ -2,10 +2,12 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import Spinner from '../../components/Spinner';
 import { AuthContext } from '../../contexts/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 import WishlistRow from './WishlistRow';
 
 const MyWishlist = () => {
-    const { user, logOut } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext);
+    useTitle('My Wishlist');
     const { data: wishlist, isLoading } = useQuery({
         queryKey: ['wishlist', user?.email],
         queryFn: async () => {
@@ -20,10 +22,7 @@ const MyWishlist = () => {
             const data = res.json();
             return data;
         }
-        // axios(`http://localhost:5000/wishlist/${user?.email}`)
-        //     .then(data => {
-        //         return data.data
-        //     })
+
     })
     // console.log(wishlist);
     if (isLoading) {

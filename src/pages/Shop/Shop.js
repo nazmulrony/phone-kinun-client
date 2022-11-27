@@ -2,12 +2,14 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useState } from 'react';
 import Spinner from '../../components/Spinner';
+import useTitle from '../../hooks/useTitle';
 import BookingModal from '../ProductsOfCategory/BookingModal';
 import ProductCard from '../ProductsOfCategory/ProductCard';
 
 
 const Shop = () => {
-    const [selectedProduct, setSelectedProduct] = useState(null)
+    const [selectedProduct, setSelectedProduct] = useState(null);
+    useTitle('Shop')
     const closeModal = () => {
         setSelectedProduct(null);
     }

@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import SmallSpinner from '../../components/SmallSpinner';
 import Spinner from '../../components/Spinner';
 import { AuthContext } from '../../contexts/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 
 
 const AddProduct = () => {
@@ -14,6 +15,7 @@ const AddProduct = () => {
     const navigate = useNavigate();
     const { register, formState: { errors }, handleSubmit } = useForm();
     const imageHostKey = process.env.REACT_APP_imageHostKey;
+    useTitle('Add Product')
     const { data: categories, isLoading } = useQuery(
         {
             queryKey: ['categories'],
