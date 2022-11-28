@@ -152,10 +152,6 @@ const Signup = () => {
                         signupError && <p className='text-red-600 mb-1 text-sm'>{signupError}</p>
                     }
                     <button type='submit' className='btn btn-primary w-full'>{loading ? <SmallSpinner /> : 'Sign Up'}</button>
-                    <input
-                        value='Sign Up'
-                        type="submit"
-                        className='btn btn-primary w-full' />
                 </form>
                 <p className='text-center text-sm my-3'>Already have an account? <Link to="/login" className=' text-primary'>Login</Link></p>
                 <div className="divider">OR</div>
