@@ -42,7 +42,9 @@ const BookingModal = ({ selectedProduct, closeModal }) => {
         console.log(order);
     }
     if (loading) {
-        return <Spinner />
+        return <div className='h-[80vh]'>
+            <Spinner />
+        </div>
     }
     return (
         <div>

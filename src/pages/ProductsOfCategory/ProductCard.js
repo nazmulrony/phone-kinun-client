@@ -63,11 +63,11 @@ const ProductCard = ({ product, setSelectedProduct }) => {
         return <SmallSpinner />
     }
     return (
-        <div className="card card-side  bg-base-100 shadow-xl">
-            <figure>
+        <div className="card card-side   bg-base-100 shadow-xl">
+            <figure className='w-56'>
                 <PhotoProvider>
                     <PhotoView src={image}>
-                        <img src={image} alt="Movie" className='w-36' />
+                        <img src={image} alt="Movie" className='w-full' />
                     </PhotoView>
                 </PhotoProvider>
 

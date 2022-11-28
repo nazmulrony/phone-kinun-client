@@ -22,7 +22,7 @@ const AdvertisedCard = ({ productId }) => {
         <>
             {product && !product.isSold &&
                 <div className="card card-side bg-base-100 shadow-xl">
-                    <figure><img src={image} alt="Movie" className='w-36' /></figure>
+                    <figure className='w-56'><img src={image} alt="Movie" className='w-full' /></figure>
                     <div className="card-body">
                         <div className='flex gap-2 items-center'>
                             <h2 className="card-title">{name}</h2>
