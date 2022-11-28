@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# Projects Name: Phone Kinun- a phone resale site
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Live Site: https://phone-kinun.web.app/
 
-## Available Scripts
+## Project Description:-
 
-In the project directory, you can run:
+-   This is a full-stack CRUD operation based web application created using NodeJS, NodeJS, ExpressJs, and MongoDB.
+-   This is a full-stack CRUD operation based web application created using ExpressJS, NodeJS, ExpressJs, and MongoDB.
+-   This is a full-stack CRUD operation based web application created using MongoDB, NodeJS, ExpressJs, and MongoDB.
+-   This is a full-stack CRUD operation based web application created using MongoDB, NodeJS, ExpressJs, and MongoDB.
+-   Regular users can book any product or can add any to product to their wishlist. From the my order or wishlist they can complete the payment process for a specific product.
+-   Payment functionality is implemented using stripe payment gateway.
+-   Sellers can add new products for selling. They can manage their added products. They can also advertise their products
+-   Admin can manage both buyers and sellers. He can also verify a specific seller.
+-   For user authentication firebase auth has been used. User authorization is integrated using JWT.
+-   User specific private routes has been used to protect the admin routes, seller routes and buyer routes.
 
-### `npm start`
+## Technologies/Tools used:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### **Javascript**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### **ReactJS**
 
-### `npm test`
+### **NodeJS**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### **ExpressJS**
 
-### `npm run build`
+### **MongoDB**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### **React Router**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### **AXIOS**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### **React Hook Form**
 
-### `npm run eject`
+### **JSON Web Token**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### **Firebase Authentication**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### **React Query**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Admin credentials:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Admin Email: nhrony65@gmail.com
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Admin Password: 123456@
