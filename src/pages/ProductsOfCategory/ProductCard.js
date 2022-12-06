@@ -93,7 +93,9 @@ const ProductCard = ({ product, setSelectedProduct }) => {
                 <p className='text-sm'> <span className='font-semibold'>Description: </span>{description}</p>
                 <div className="flex gap-2 flex-col  justify-between">
                     <label onClick={() => setSelectedProduct(product)} className='btn btn-primary rounded-none btn-sm' htmlFor="bookingModal">Order Now</label>
-                    <button onClick={handleAddToWishlist} className='btn rounded-none btn-sm'>Add to Wishlist</button>
+                    {
+                        user ? <button onClick={handleAddToWishlist} className='btn rounded-none btn-sm'>Add to Wishlist</button> : ''
+                    }
                 </div>
             </div>
         </div>

@@ -46,6 +46,7 @@ const BookingModal = ({ selectedProduct, closeModal }) => {
             <Spinner />
         </div>
     }
+
     return (
         <div>
             {/* The button to open modal */}
@@ -56,44 +57,49 @@ const BookingModal = ({ selectedProduct, closeModal }) => {
             <div className="modal">
                 <div className="bg-light relative w-full mx-4 md:w-2/3 p-12 shadow-lg shadow-black/20">
                     <label htmlFor="bookingModal" className="btn btn-sm btn-circle absolute btn-primary right-2 top-2">✕</label>
-                    <h3 className="text-lg font-bold">Place Your Order for <span className='text-primary'>{name}</span></h3>
-                    <form onSubmit={handleSubmit} className='grid gap-4 mt-4'>
-                        <div className='flex flex-col md:flex-row gap-4'>
-                            <div className='flex-1'>
-                                <label htmlFor="">Name</label>
-                                <input type="text" name="name" disabled defaultValue={user?.displayName} className="input input-bordered w-full" />
-                            </div>
-                            <div className='flex-1'>
-                                <label htmlFor="">Email</label>
-                                <input name='email' type="email" disabled defaultValue={user?.email} placeholder="Email" className="input input-bordered w-full" />
-                            </div>
-                        </div>
-                        <div className='flex flex-col md:flex-row gap-4'>
-                            <div className='flex-1'>
-                                <label htmlFor="">Product Name</label>
-                                <input name='productName' type="text" disabled defaultValue={name} className="input input-bordered w-full" />
-                            </div>
-                            <div className='flex-1'>
-                                <label htmlFor="">Price</label>
-                                <input name='price' type="text" disabled defaultValue={sellingPrice} className="input input-bordered w-full" />
-                            </div>
-                        </div>
-                        <div className='flex flex-col md:flex-row gap-4'>
-                            <div className='flex-1'>
-                                <label htmlFor="">Phone Number</label>
-                                <input name='phone' type="text" placeholder="Enter your phone" className="input input-bordered w-full" required />
-                            </div>
-                            <div className='flex-1'>
-                                <label htmlFor="">Meet Location</label>
-                                <input name='location' type="text" placeholder='Enter preferred meet location' className="input input-bordered w-full" required />
-                            </div>
-                        </div>
+                    {
+                        !user ? <h2 className='text-2xl text-primary text-center'>Please login to place order</h2> :
+                            <>
+                                <h3 className="text-lg font-bold">Place Your Order for <span className='text-primary'>{name}</span></h3>
+                                <form onSubmit={handleSubmit} className='grid gap-4 mt-4'>
+                                    <div className='flex flex-col md:flex-row gap-4'>
+                                        <div className='flex-1'>
+                                            <label htmlFor="">Name</label>
+                                            <input type="text" name="name" disabled defaultValue={user?.displayName} className="input input-bordered w-full" />
+                                        </div>
+                                        <div className='flex-1'>
+                                            <label htmlFor="">Email</label>
+                                            <input name='email' type="email" disabled defaultValue={user?.email} placeholder="Email" className="input input-bordered w-full" />
+                                        </div>
+                                    </div>
+                                    <div className='flex flex-col md:flex-row gap-4'>
+                                        <div className='flex-1'>
+                                            <label htmlFor="">Product Name</label>
+                                            <input name='productName' type="text" disabled defaultValue={name} className="input input-bordered w-full" />
+                                        </div>
+                                        <div className='flex-1'>
+                                            <label htmlFor="">Price</label>
+                                            <input name='price' type="text" disabled defaultValue={sellingPrice} className="input input-bordered w-full" />
+                                        </div>
+                                    </div>
+                                    <div className='flex flex-col md:flex-row gap-4'>
+                                        <div className='flex-1'>
+                                            <label htmlFor="">Phone Number</label>
+                                            <input name='phone' type="text" placeholder="Enter your phone" className="input input-bordered w-full" required />
+                                        </div>
+                                        <div className='flex-1'>
+                                            <label htmlFor="">Meet Location</label>
+                                            <input name='location' type="text" placeholder='Enter preferred meet location' className="input input-bordered w-full" required />
+                                        </div>
+                                    </div>
 
 
 
-                        <button type="submit" className="btn btn-primary rounded-none btn-sm">Place Order</button>
+                                    <button type="submit" className="btn btn-primary rounded-none btn-sm">Place Order</button>
 
-                    </form>
+                                </form>
+                            </>
+                    }
                 </div>
                 {/* <label htmlFor="bookingModal" className="btn">close modal</label> */}
             </div>
