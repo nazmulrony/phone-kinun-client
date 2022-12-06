@@ -39,8 +39,22 @@
 
 ### **React Query**
 
+# NOTE: Please login with specific user to see the user specific features
+
 ## Admin credentials:
 
 ### Admin Email: nhrony65@gmail.com
 
 ### Admin Password: 123456@
+
+## Buyer credentials:
+
+### Buyer Email: nahid@gmail.com
+
+### Buyer Password: 123456@
+
+## Seller credentials:
+
+### Seller Email: sakib@gmail.com
+
+### Seller Password: 123456@
