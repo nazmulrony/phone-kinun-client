@@ -3,7 +3,6 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Spinner from '../../components/Spinner';
-import PrivateRoute from '../../routes/PrivateRoute';
 import BookingModal from './BookingModal';
 import ProductCard from './ProductCard';
 
@@ -45,10 +44,12 @@ const ProductsOfCategory = () => {
             </div>
             {
                 selectedProduct &&
+
                 <BookingModal
                     selectedProduct={selectedProduct}
                     closeModal={closeModal}
                 />
+
 
             }
         </div>

@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
+import { Navigate, useNavigate } from 'react-router-dom';
 import Spinner from '../../components/Spinner';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const BookingModal = ({ selectedProduct, closeModal }) => {
     const { user, loading, setLoading } = useContext(AuthContext);
-    const { name, sellingPrice, } = selectedProduct
+    const { name, sellingPrice, } = selectedProduct;
+    const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -45,6 +47,10 @@ const BookingModal = ({ selectedProduct, closeModal }) => {
         return <div className='h-[80vh]'>
             <Spinner />
         </div>
+    }
+    console.log(!user);
+    if (!user) {
+        return <Navigate to="/login" />
     }
 
     return (
